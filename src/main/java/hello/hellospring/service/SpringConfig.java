@@ -2,11 +2,14 @@ package hello.hellospring.service;
 
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
+//private DataSource dataSource;
 public class SpringConfig {
   @Bean
   public MemberService memberService(){
@@ -15,6 +18,8 @@ public class SpringConfig {
 
   @Bean
   public MemberRepository memberRepository(){
+
     return new MemoryMemberRepository();
   }
 }
+

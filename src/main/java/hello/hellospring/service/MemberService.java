@@ -11,7 +11,7 @@ import javax.management.openmbean.OpenMBeanAttributeInfo;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//@Service
 public class MemberService {
 
   private MemberRepository memberRepository;

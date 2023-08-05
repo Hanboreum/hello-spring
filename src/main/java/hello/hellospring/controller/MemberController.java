@@ -18,26 +18,23 @@ public class MemberController {
   public MemberController(MemberService memberService) {
     this.memberService = memberService;
   }
-
-  @GetMapping("/members/new")
+  @GetMapping(value = "/members/new")
   public String createForm(){
     return "members/createMemberForm";
   }
 
-  @PostMapping("/members/new")
-  public String create(MemberForm form){ // 회원가입클릭시
+  @PostMapping(value = "/members/new")
+  public String create(MemberForm form){
     Member member = new Member();
     member.setName(form.getName());
-
-    //System.out.println("member :"+member.getName()); 화면 출력
+    System.out.println("member = "+member.getName());
 
     memberService.join(member);
-
-    return "redirect:/"; //홈화면으로 보내줌
+    return "redirect:/";
   }
 
-  @GetMapping("/members")
-  public String list(Model model){
+  @GetMapping(value = "/members")
+  public String list(Model model) {
     List<Member> members = memberService.findMembers();
     model.addAttribute("members",members);
     return "members/memberList";

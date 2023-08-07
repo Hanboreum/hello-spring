@@ -8,9 +8,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import javax.xml.transform.Result;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +16,11 @@ import java.util.Optional;
 public class JdbcTemplateMemberRepository implements MemberRepository{
 
   private  final JdbcTemplate jdbcTemplate;
-  //@Autowired 생성자 하나일 때 Autowired생략 가능
+  @Autowired
+  //생성자 하나일 때 Autowired생략 가능
   public JdbcTemplateMemberRepository(DataSource dataSource) {
    jdbcTemplate = new JdbcTemplate(dataSource);
   }
-
 
   @Override
   public Member save(Member member) {
@@ -56,14 +53,8 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     return jdbcTemplate.query("select *from member", memberRowMapper());
   }
 
-  @Override
-  public void clearStore() {
-
-  }
-
   private RowMapper<Member> memberRowMapper(){
     return (rs, rowNum) -> {
-
       Member member = new Member();;
       member.setId(rs.getLong("id"));
       member.setName(rs.getString("name"));
